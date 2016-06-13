@@ -1,0 +1,44 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	var numComp = (Math.round(Math.random()*100));
+	var count = 0;
+	var User;
+
+	var User1 = prompt('Введите имя первого игрока: ');
+	var User2 = prompt('Введите имя второго игрока: ');
+	
+	do {
+		count++
+
+		if ((count/2) == parseInt(count/2)) {
+			User = User2;
+		}
+		else User = User1;
+
+		var numUser = prompt('Ход игрока ' + User + '. Угадайте число от 1 до 100 (0 - прервать игру)');
+
+		if (numUser > 0 && numUser < numComp) {
+			alert('Ваше число слишком маленькое, переход хода!');
+		}
+		else if (numUser > numComp && numUser <= 100) {
+			alert('Ваше число слишком большое, переход хода!');
+		}
+		else if (numUser == numComp) {
+			alert(User + ', вы выиграли!' );
+			break;
+		}
+		else if (numUser == '0') {
+			alert('Вы прервали игру');0
+			break;
+		}
+		else {
+			alert('Вы ввели что-то не то, попробуйте еще раз.');
+			count++;
+		}
+
+	} while (true);
+
+	
+
+</script>
