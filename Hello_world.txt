@@ -1,2 +1,5 @@
 alert('Hellow world!');
 alert('Hellow all!');
+
+alert('goodbye");
+alert('see you');
