@@ -1,2 +1,2 @@
-alert('Hellow world!')
-alert('Hellow all!')
+alert('Hellow world!');
+alert('Hellow all!');
