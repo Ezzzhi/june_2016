@@ -1,0 +1,104 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+	
+	// получение случайного числа в заданном интервале чисел
+	function getRandomInt(min, max) {
+		return Math.floor(Math.random() * (max - min +1)) + min;
+	}
+
+	// получение случайной карты из колоды
+	function getCard() {
+		var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+		return cards[getRandomInt(0, cards.length - 1)];
+	}
+
+	// подсчет суммы полученных карт
+	function getSum(hand) {
+		var sum = 0;
+
+		// считаем все карты, кроме тузов
+		for (var i = 0; i < hand.length; i++) {
+			var card = hand[i];
+			if (card != 'A') {
+				if (isNaN(parseInt(card))) {
+					sum = sum + 10;
+				}
+				else sum = sum + parseInt(card);
+			}
+		}
+
+		// считаем тузы
+		for (var i = 0; i < hand.length; i++) {
+			var card = hand[i];
+			if (card == 'A') {
+				if (sum > 10) {
+					sum = sum + 1;
+				}
+				else {
+					sum = sum + 11;
+				}
+			}
+		}
+
+		return sum;
+	}
+
+	function getStatus() {
+		return 'Дилер ' + dealer.join('  ') + ', очки: ' + getSum(dealer) + '. Игрок ' + player.join('  ') + ', очки: ' + getSum(player) + '.';
+	}
+
+
+
+	var answer = ''; // брать ли еще одну карту
+	var next = ''; // играть ли дальше
+	var round = 0; // подсчет количества игр
+	var win = 0; // подсчет количества выигранных игр
+
+	do {
+		var dealer = [getCard()];
+		var player = [getCard(), getCard()];
+		round++;
+
+		do {
+			if (getSum(player) >= 21) {
+				alert(getStatus());
+				break;
+			}
+
+			else {
+				answer = prompt(getStatus() + ' Хотите еще карту? (1 - да, другое - нет)');
+
+				if (answer == '1') {
+					player.push(getCard());
+				}
+			}
+
+		} while(answer == '1');
+
+
+
+		if (getSum(player) > 21) {
+			alert('Перебор! Вы проиграли!');
+		}
+		else if (getSum(player) == 21) {
+				alert('Очко! Вы выиграли!');
+				win++;
+		}
+		else {
+			if (getSum(dealer) < 17) {
+				dealer.push(getCard());
+			}
+			if (getSum(player) >= getSum(dealer)) {
+				alert(getStatus() + ' Вы выиграли!');
+				win++
+			}
+			else alert(getStatus() + ' Вы проиграли!');
+		}
+
+	next = prompt('Играем дальше? (1 - да, другое - нет)');
+} while(next == '1');
+
+alert('Вы выиграли ' + win + ' раз из ' + round);
+
+
+</script>
