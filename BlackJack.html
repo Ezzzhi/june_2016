@@ -85,9 +85,9 @@
 				win++;
 		}
 		else {
-			if (getSum(dealer) < 17) {
+			while (getSum(dealer) < 17) {
 				dealer.push(getCard());
-			}
+			};
 			if (getSum(player) >= getSum(dealer)) {
 				alert(getStatus() + ' Вы выиграли!');
 				win++
@@ -100,5 +100,8 @@
 
 alert('Вы выиграли ' + win + ' раз из ' + round);
 
+/*ToDo
+сделать верстку для игры
+*/
 
 </script>
